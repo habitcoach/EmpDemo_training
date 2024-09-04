@@ -8,55 +8,37 @@ using System.Threading.Tasks;
 namespace EmpDemo
 {
 
-    internal class Vehicle {
+    public class Vehicle {
 
-        public string Brand { get; set; }
+        protected string Brand { get; set; }
         public string Model { get; set; }
 
-        public void StartEngine()
+        public void Drive()
         {
-            Console.WriteLine("Engine started!");
-        }
+            Vehicle vehicle = new Vehicle();
 
-        public void StopEngine()
-        {
-            Console.WriteLine("Engine stopped!");
-        }
-
-        public virtual void Drive()
-        {
-            Console.WriteLine("vehicle is driving.");
+            vehicle.Brand = "  ";
         }
 
     }
 
 
-    sealed class Car : Vehicle {
+    public class Car :Vehicle {
 
        
         public int NumberOfDoors { get; set; }
 
-        public override void Drive()
+        public  void Drive()
         {
-            Console.WriteLine("Car is driving.");
+
+            Brand = "something";
+           
         }
 
 
     }
 
-    class SuperCar : Vehicle
-    {
-
-
-        public int HP { get; set; }
-
-        public void Race()
-        {
-            Console.WriteLine("driving.");
-        }
-
-
-    }
+    
 
 
 }
