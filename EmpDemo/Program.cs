@@ -1,4 +1,7 @@
 ﻿
+using System.Collections;
+using System.Net.WebSockets;
+
 namespace EmpDemo
 {
     internal class Program
@@ -7,17 +10,39 @@ namespace EmpDemo
         {
             Console.WriteLine("Hello, World!");
 
-            Employee AliEmp = new Employee();
+            Employee Emp01 = new Employee(1, "Name01", "Oman",999999, "Manager");
+            Employee Emp02 = new Employee(2, "Name02", "Place02",999999, "Admin");
+            Employee Emp03 = new Employee(3, "Name03", "Place03",999999, "Associate");
 
-            AliEmp.Id = 1;
-            AliEmp.Name = "Ali something";
-            AliEmp.Address = "Oman";
-            AliEmp.Title = "Manager";
-            AliEmp.Phone = 99999999;
+            ArrayList employees = new ArrayList();
 
-            Console.WriteLine("The emp detials are: ");
+          //  Employee[] emparray = new Employee[100];
 
-            Console.WriteLine(AliEmp.Name + "\n" + AliEmp.Id +"\n"+ AliEmp.Phone);
+            employees.Add(Emp01);
+            employees.Add(Emp02);
+            employees.Add(Emp03);
+
+            // Read
+
+
+            var readEmp = ReadEmployee(2);
+
+
+             Employee ReadEmployee(int id) {
+
+                foreach (Employee emp in employees) { 
+                
+                    if (emp.Id == id)
+                    {
+                        return emp;
+                    }
+                }
+
+                return null;
+
+            }
+
+            readEmp.DisplayDetials();
 
 
         }
