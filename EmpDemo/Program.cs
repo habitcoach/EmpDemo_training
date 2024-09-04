@@ -8,18 +8,16 @@ namespace EmpDemo
     {
         static void Main(string[] args)
         {
-           Demo<int,string> commonObj = new Demo<int,string>();
+           
+            Vehicle TeslaCar = new Car();
 
-           Demo<double,bool> commonObj02 = new Demo<double,bool>();
+            TeslaCar.Brand = "tesla";
+            TeslaCar.Model = "Model 3";
+            TeslaCar.Drive();   // car is driving   //veh is drving
+           
 
-
-
-            commonObj.Prop01 = 123;
-            commonObj.Prop02 = " some value";
-            commonObj.PrintValue();
-            Console.WriteLine(commonObj.PrintValue02(2));
-            Console.WriteLine(commonObj.PrintValue02("string"));
-
+           
+            
            
         }
         

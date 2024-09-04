@@ -8,29 +8,55 @@ using System.Threading.Tasks;
 namespace EmpDemo
 {
 
+    class Vehicle {
 
+        public string Brand { get; set; }
+        public string Model { get; set; }
 
-    public class Demo<T1,T2>
-    {
-
-        public T1 Prop01 { get; set; }
-        public T2 Prop02 { get; set; }
-       
-
-        public void PrintValue() { 
-        
-            Console.WriteLine("The value of prop1: "+ Prop01);
-
-        }
-
-        public T2 PrintValue02<T2>(T2 value)
+        public void StartEngine()
         {
-
-            return value;
-
+            Console.WriteLine("Engine started!");
         }
 
+        public void StopEngine()
+        {
+            Console.WriteLine("Engine stopped!");
+        }
+
+        public virtual void Drive()
+        {
+            Console.WriteLine("vehicle is driving.");
+        }
+
+    }
+
+
+    sealed class Car : Vehicle {
+
+       
+        public int NumberOfDoors { get; set; }
+
+        public override void Drive()
+        {
+            Console.WriteLine("Car is driving.");
+        }
 
 
     }
+
+    class SuperCar : Vehicle
+    {
+
+
+        public int HP { get; set; }
+
+        public void Race()
+        {
+            Console.WriteLine("driving.");
+        }
+
+
+    }
+
+
 }
