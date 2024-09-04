@@ -8,20 +8,19 @@ namespace EmpDemo
     {
         static void Main(string[] args)
         {
-            Employee emp01 = new Employee() { Name = "John" };
-            Employee emp02 = new Employee() { Name = "Chandler" };
-            Employee emp03 = new Employee() { Name = "Ross" };
-            Employee emp04 = new Employee() { Name = "Monica" };
-            Employee emp05 = new Employee() { Name = "Rachel" };
-            Employee emp06 = new Employee() { Name = "Gunter" };
+           Demo<int,string> commonObj = new Demo<int,string>();
 
-            List<Employee> Emplist = new List<Employee>() { emp01, emp02, emp03, emp04, emp05, emp06 };
-            Emplist.Sort();
-            foreach (Employee emp in Emplist) { 
-            
-                Console.WriteLine(emp.Name);
+           Demo<double,bool> commonObj02 = new Demo<double,bool>();
 
-            }
+
+
+            commonObj.Prop01 = 123;
+            commonObj.Prop02 = " some value";
+            commonObj.PrintValue();
+            Console.WriteLine(commonObj.PrintValue02(2));
+            Console.WriteLine(commonObj.PrintValue02("string"));
+
+           
         }
         
     }
