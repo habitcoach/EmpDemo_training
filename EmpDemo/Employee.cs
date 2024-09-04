@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace EmpDemo
 {
 
-    class Vehicle {
+    internal class Vehicle {
 
         public string Brand { get; set; }
         public string Model { get; set; }
