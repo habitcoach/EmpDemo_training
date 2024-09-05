@@ -1,59 +1,87 @@
 ﻿
+using Newtonsoft.Json;
 using System.Collections;
 using System.IO;
 using System.Net.WebSockets;
+using System.Xml.Serialization;
 
 namespace EmpDemo
 {
     public class Program
     {
-        static string diaryFilePath = @"D:\Test\Diary.txt";
+        static string diaryFilePath = @"D:\Test\JsonValue.txt";
         static void Main(string[] args)
         {
 
+            
+
+            //Student stu01 = new Student() { 
+            
+            //    Name="TestName",
+            //    Age=25
+
+            //};
+
+            var empId =  Convert.ToInt32( Console.ReadLine());
+
+            var empName = Console.ReadLine();
+
+            Login emp1login = new Login() { EmpId = empId, EmpName = empName };
+
+            #region Convert object to json
 
 
-            #region File code
 
-            //Console.WriteLine("\nEnter your diary entry:");
+            //string json = JsonConvert.SerializeObject(emp1login);
 
-            //string entry = "This is the data added from c#";
+            //Console.WriteLine(json);
 
-            //try
-            //{
+            //File.Create(diaryFilePath).Close();
 
-            if (!File.Exists(diaryFilePath))
+            //File.AppendAllText(diaryFilePath, json);
+
+            #endregion
+
+            #region Covert json back object
+
+            // string jsonFromFile = File.ReadAllText(diaryFilePath);
+
+
+            // Login? readLoginData = JsonConvert.DeserializeObject<Login>(jsonFromFile);
+
+            //Console.WriteLine($"Login data: {readLoginData.EmpName} {readLoginData.EmpId}");   
+
+            #endregion
+
+
+            #region Convert object to XML
+
+            XmlSerializer serializer = new XmlSerializer(typeof(Login));
+
+            using (StreamWriter writer = new StreamWriter(@"D:\Test\studentXML.txt"))
             {
 
-                File.Create(diaryFilePath).Close();
+
+                serializer.Serialize(writer, emp1login);
+
 
 
             }
 
-            //    File.AppendAllText(diaryFilePath, entry);
-
-            //    File.Delete(diaryFilePath);
-
-            //    File.GetAttributes(diaryFilePath);
-
-            //}
-            //catch(FileNotFoundException ex){ 
-
-            //    Console.WriteLine("File does not exist ");
-            //  }
-
             #endregion
 
-            #region FileInfo code
+            #region Convert XML to Object
 
-            FileInfo diaryObj = new FileInfo(diaryFilePath);
+            using (StreamReader reader = new StreamReader(@"D:\Test\studentXML.txt"))
+            {
+                Login deserializedLogin = (Login)serializer.Deserialize(reader);
 
-            Console.WriteLine(diaryObj.FullName);
-            Console.WriteLine(diaryObj.CreationTime.ToString());
-            Console.WriteLine(diaryObj.Extension);
-            Console.WriteLine(diaryObj.Length); 
-            diaryObj.Delete();
-
+                // Display deserialized object's properties
+                Console.WriteLine("\nDeserialized Student:");
+                Console.WriteLine($"Name: {deserializedLogin.EmpName}");
+                Console.WriteLine($"Age: {deserializedLogin.EmpId}");
+               
+            }
 
             #endregion
 
